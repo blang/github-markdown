@@ -61,6 +61,7 @@ func (h *HttpHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Error: %s\n", err)
 		return
 	}
+	defer resp.Body.Close()
 
 	fmt.Fprintf(w, "<html><head><title>%s</title><link rel=\"stylesheet\" href=\"http://sindresorhus.com/github-markdown-css/github-markdown.css\"><style>%s</style></head><body><article class=\"markdown-body\">\n", name, css_body)
 	fmt.Fprintf(w, "%s", b)
